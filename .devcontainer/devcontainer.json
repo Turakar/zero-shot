@@ -1,0 +1,45 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "remoteUser": "vscode",
+    "capAdd": [
+        "SYS_PTRACE"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "github.copilot",
+                "github.copilot-chat",
+                "ms-toolsai.jupyter",
+                "ms-python.python",
+                "njqdev.vscode-python-typehint",
+                "tamasfe.even-better-toml",
+                "ms-azuretools.vscode-docker",
+                "redhat.vscode-yaml",
+                "charliermarsh.ruff"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.profiles.linux": {
+                    "bash": {
+                        "path": "/bin/bash"
+                    }
+                }
+            }
+        }
+    },
+    "runArgs": [
+        "--runtime=nvidia",
+        "--gpus",
+        "all",
+        "--rm"
+    ],
+    "features": {
+        "ghcr.io/devcontainers-contrib/features/poetry:2": {}
+    },
+    "containerEnv": {
+        "TORCH_EXTENSIONS_DIR": "${containerWorkspaceFolder}/.torch_extensions",
+        "TORCH_HOME": "${containerWorkspaceFolder}/.torch"
+    }
+}
